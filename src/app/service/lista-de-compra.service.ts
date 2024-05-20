@@ -34,13 +34,18 @@ export class ListaDeCompraService {
 
   editarItemDaLista(itemAntigo: Item, nomeEditadoDoItem: string){
     const itemEditado : Item = {
-        id: itemAntigo.id,
-        nome: nomeEditadoDoItem,
-        data: itemAntigo.data,
-        comprado: itemAntigo.comprado
+      id: itemAntigo.id,
+      nome: nomeEditadoDoItem,
+      data: itemAntigo.data,
+      comprado: itemAntigo.comprado
     }
     const id = itemAntigo.id;
     this.listaDeCompras.splice(Number(id)-1, 1, itemEditado);
+  }
+
+  limparLista(){
+    this.listaDeCompras = []
+    localStorage.setItem('itens', JSON.stringify(this.listaDeCompras));
   }
 
   atualizarLocalStorage(){

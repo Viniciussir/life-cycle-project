@@ -18,11 +18,20 @@ export class AppComponent implements OnInit, DoCheck {
 
   ngOnInit(){
     this.listaDeCompra = this.listaService.getListaDeCompra()
-    console.log(this.listaDeCompra)
   }
 
   editarItem(item: Item){
     this.itemParaSerEditado = item;
+  }
+
+  deletarItem(id: number){
+    const index = this.listaDeCompra.findIndex((item) => item.id === id);
+    this.listaDeCompra.splice(index, 1);
+  }
+
+  limparLista(){
+    this.listaDeCompra = [];
+    this.listaService.limparLista();
   }
 
   ngDoCheck(): void {
