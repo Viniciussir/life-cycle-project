@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ListaDeCompraService {
 
-  private listaDeCompra: Item[] = [
+  private listaDeCompras: Item[] = [
     {
       "id": 1,
       "nome": "Queijo prato",
@@ -32,11 +32,11 @@ export class ListaDeCompraService {
   }
 
   getListaDeCompra(){
-    return this.listaDeCompra;
+    return this.listaDeCompras;
   }
 
   criarItem(nomeDoItem: string){
-    const id = this.listaDeCompra.length + 1
+    const id = this.listaDeCompras.length + 1
     const item : Item = {
       id: id,
       nome: nomeDoItem, 
@@ -48,7 +48,18 @@ export class ListaDeCompraService {
 
   adicionartemNaLista(nomeDoItem: string) {
     const item = this.criarItem(nomeDoItem);
-    this.listaDeCompra.push(item);
+    this.listaDeCompras.push(item);
+  }
+
+  editarItemDaLista(itemAntigo: Item, nomeEditadoDoItem: string){
+    const itemEditado : Item = {
+        id: itemAntigo.id,
+        nome: nomeEditadoDoItem,
+        data: itemAntigo.data,
+        comprado: itemAntigo.comprado
+    }
+    const id = itemAntigo.id;
+    this.listaDeCompras.splice(Number(id)-1, 1, itemEditado);
   }
 
 }
